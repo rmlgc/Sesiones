@@ -2,6 +2,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,8 +50,29 @@ public class AnaydirAtributo extends HttpServlet {
     	out.println("</head>");
     	out.println("<body>");
     	out.println("<h1>Sesión del usuario</h1>");
-    	out.println("<p>hola: "+ valor +"</p>");
+    	
+    	Enumeration<String> nombresDeAtributos = sesion.getAttributeNames();
+    	
+    	while (nombresDeAtributos.hasMoreElements()) {
+			
+    		
+    		atributo = nombresDeAtributos.nextElement();
+			valor = (String) sesion.getAttribute(atributo);
+
+			out.println("<hr>");
+			
+	    	out.println("<p>Atributo: "+ atributo+"</p>");
+	    	
+	    	out.println("<p>Valor: "+ valor+"</p>");
+	    	
+			
+		}
+    	
     	out.println("</body>");
+    	
+    	
+    	
+    	
 		
 	}
 
